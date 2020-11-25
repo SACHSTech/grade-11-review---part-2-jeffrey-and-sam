@@ -57,12 +57,43 @@ public class Utility {
     return nums;
   }
 
+  public static boolean canBalance(int[] nums){
+    int intLength;
+    intLength = nums.length;
+    int intSum;
+    intSum = 0;
+    int intPreSum;
+    intPreSum = 0;
+
+
+    for (int intCount = 0; intCount < intLength; intCount++) {
+      intSum += nums[intCount];
+    }
+
+    for (int intCount = 0; intCount < intLength; intCount++) {
+      intPreSum += nums[intCount];
+      if (intSum - intPreSum == intPreSum) {
+        return true;
+      }
+      else if (intSum - intPreSum < intPreSum) {
+        return false;
+      }
+    }
+
+    return false;
+
+  }
+
+
+
   public static void main(String[] args) throws IOException {
     System.out.println(sumNumbers("1a1a1a1"));
     System.out.println(alphaWord("file"));
     int[] num = {3, 2, 3};
     num = notAlone(num, 2);
     System.out.println(num[0] + " " + num[1] + " " + num[2]);
+    int[] num2 = {2, 1, 1, 2, 1};
+    System.out.println(canBalance(num2));
   }
 
 
