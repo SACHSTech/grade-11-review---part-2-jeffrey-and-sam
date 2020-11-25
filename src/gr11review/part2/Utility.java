@@ -128,7 +128,7 @@ public class Utility {
   // Function that prints the pascal triangle up to the given row i and column j
   public static void pascalTri(int i, int j) throws IOException {
     // Initialize print writer
-    PrintWriter file = new PrintWriter(new FileWriter("src/gr11review/part2/pascalOut.txt"));
+    PrintWriter file = new PrintWriter(new FileWriter("src/gr11review/part2/pascalOut.txt"), false);
 
     // Declare variables
     int intCounter;
@@ -157,12 +157,14 @@ public class Utility {
       }
       file.println();
     }
-    
+
+    // Close file 
+    file.close();
   }
    
 
   public static void main(String[] args) throws IOException{
-    pascalTri(3, 4);
+    pascalTri(9, 9);
   }
 
 }
