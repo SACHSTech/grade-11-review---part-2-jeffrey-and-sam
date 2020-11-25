@@ -85,12 +85,50 @@ public class Utility {
     // Return array
     return nums;
   }
+
+
+  // SAM
+  // Function that takes in two integer arrays sorted in increasing order and checks if all the numbers in inner appear in outer
+  public static boolean linearIn(int[] outer, int[] inner) {
+    // Declare variables
+    int intOuterCounter;
+    int intInnerCounter;
+
+    // Initialize variables
+    intOuterCounter = 0;
+
+    // Iterate through each element of the outer array, looking for a match with the inner array by an incrementing intInnerCounter varaible
+    for (intInnerCounter = 0; intInnerCounter < inner.length; intInnerCounter++) {
+      while (intOuterCounter < outer.length) {
+        // If the outer item is greater than the current inner item, that means that there's no match for the current inner item; return false
+        if (outer[intOuterCounter] > inner[intInnerCounter]) {
+          return false;
+        }
+        // If the outer item is equal to the current inner item, that means a match for the current inner item has been found; exit the while loop and move to the next outer item
+        // Don't increment intOuterCounter in case the next inner item is the same
+        else if (inner[intInnerCounter] == outer[intOuterCounter]) {
+          break;
+        }
+        // Move to the next outer item in search of a match. If the end of the array is reached, return false
+        else {
+          intOuterCounter++;
+          if (intOuterCounter == outer.length) {
+            return false;
+          }
+        }
+      }
+    }
+    
+    // If this part of the code is reached, every inner item has a match; return true
+    return true;
+  }
    
 
   public static void main(String[] args) throws IOException{
-    int arr[] = {7, 6, 10, 11, 14, 20, 0, 5, 9, 70, 8};
+    int outer[] = {1, 1, 2, 2, 3};
+    int inner[] = {1, 1, 1, 1, 4};
     
-    System.out.println(Arrays.toString(tenRun(arr)));
+    System.out.println(linearIn(outer, inner));
   }
 
 }
