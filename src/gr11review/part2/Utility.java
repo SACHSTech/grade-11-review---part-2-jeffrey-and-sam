@@ -20,7 +20,7 @@ public class Utility {
     // Initialize variable 
     strOutput = "";
 
-    // Iterate through the string and check if the letter i is 'z' and the letter i+2 is 'p'. If so, add 'zp' to the output and increment i to skip past the 'p'. If not, add character i to the output
+    // Iterate through the string and check if the letter i is 'z' and the letter i+2 is 'p'. If so, add 'zp' to the output and increment i by 2 to skip to the letter after 'p'. If not, add character i to the output
     for (int i = 0; i < strInput.length(); i++) {
       if (i+2 < strInput.length() && strInput.charAt(i) == 'z' && strInput.charAt(i+2) == 'p') {
         strOutput += "zp";
@@ -50,13 +50,16 @@ public class Utility {
     strLongestWord = "";
     strCurrentWord = file.readLine();
     
-    // While the end of the given file hasn't been reached, read the new string. If the new string is as long or longer than the current longest word, update the longest word
+    // While the end of the given file hasn't been reached, read the new string. If the new string is as long or longer than the current longest word, update the longest word variable
     while (strCurrentWord != null) {
       if (strCurrentWord.length() >= strLongestWord.length()) {
         strLongestWord = strCurrentWord;
       }
       strCurrentWord = file.readLine();
     }
+
+    // Close file
+    file.close();
 
     // Return longest word
     return strLongestWord;
@@ -72,7 +75,7 @@ public class Utility {
     // Initialize variables
     intCurrentMultiple = -1;
 
-    // Iterate through the array. If we encounter a multiple of 10, update the current multiple. Every non-multiple of 10 after that is then changed to that current multiple
+    // Iterate through the array. If a multiple of 10 is encountered, update the current multiple. Every non-multiple of 10 after that is changed to that current multiple
     for (int i = 0; i < nums.length; i++) {
       if (nums[i] % 10 == 0) {
         intCurrentMultiple = nums[i];
@@ -88,7 +91,7 @@ public class Utility {
 
 
   // SAM
-  // Function that takes in two integer arrays sorted in increasing order and checks if all the numbers in inner appear in outer
+  // Function that takes in two integer arrays sorted in increasing order and checks if all the numbers in the inner array appear in the outer array
   public static boolean linearIn(int[] outer, int[] inner) {
     // Declare variables
     int intOuterCounter;
@@ -97,15 +100,14 @@ public class Utility {
     // Initialize variables
     intOuterCounter = 0;
 
-    // Iterate through each element of the outer array, looking for a match with the inner array by an incrementing intInnerCounter varaible
+    // Iterate through each element of the inner array, looking for a match with the outer array by an incrementing intOuterCounter varaible
     for (intInnerCounter = 0; intInnerCounter < inner.length; intInnerCounter++) {
       while (intOuterCounter < outer.length) {
         // If the outer item is greater than the current inner item, that means that there's no match for the current inner item; return false
         if (outer[intOuterCounter] > inner[intInnerCounter]) {
           return false;
         }
-        // If the outer item is equal to the current inner item, that means a match for the current inner item has been found; exit the while loop and move to the next outer item
-        // Don't increment intOuterCounter in case the next inner item is the same
+        // If the outer item is equal to the current inner item, that means a match for the current inner item has been found; break out of the while loop and move to the next inner item
         else if (inner[intInnerCounter] == outer[intOuterCounter]) {
           break;
         }
@@ -131,40 +133,35 @@ public class Utility {
     PrintWriter file = new PrintWriter(new FileWriter("src/gr11review/part2/pascalOut.txt"), false);
 
     // Declare variables
-    int intCounter;
-    int intCounter2;
+    int intRowCounter;
+    int intColCounter;
     int intPascalTriangle[][] = new int[i][j];
 
-    // Set the first rows and columns equal to 0
-    for (intCounter = 0; intCounter < i; intCounter++) {
-      intPascalTriangle[intCounter][0] = 1;
+    // Set the first row and column equal to 0
+    for (intRowCounter = 0; intRowCounter < i; intRowCounter++) {
+      intPascalTriangle[intRowCounter][0] = 1;
     }
-    for (intCounter2 = 0; intCounter2 < j; intCounter2++) {
-      intPascalTriangle[0][intCounter2] = 1;
+    for (intColCounter = 0; intColCounter < j; intColCounter++) {
+      intPascalTriangle[0][intColCounter] = 1;
     }
 
-    // Iterate the row from 1 to i-1. For each of these rows, iterate the column from 1 to j-1. The pascal traingle value of this cell is the sum of the pascal triangle values to its left and above
-    for (intCounter = 1; intCounter < i; intCounter++) {
-      for (intCounter2 = 1; intCounter2 < j; intCounter2++) {
-        intPascalTriangle[intCounter][intCounter2] = intPascalTriangle[intCounter - 1][intCounter2] + intPascalTriangle[intCounter][intCounter2 - 1];
+    // Iterate the row from 1 to i-1. For each of these rows, iterate the column from 1 to j-1. The pascal triangle value of cell[i][j] is the sum of the pascal triangle values to its left and above
+    for (intRowCounter = 1; intRowCounter < i; intRowCounter++) {
+      for (intColCounter = 1; intColCounter < j; intColCounter++) {
+        intPascalTriangle[intRowCounter][intColCounter] = intPascalTriangle[intRowCounter - 1][intColCounter] + intPascalTriangle[intRowCounter][intColCounter - 1];
       }
     }
 
-    // Iterate through the 2D array and print out rows 1 to i and columns 1 to j
-    for (intCounter = 0; intCounter < i; intCounter++) {
-      for (intCounter2 = 0; intCounter2 < j; intCounter2++) {
-        file.print(intPascalTriangle[intCounter][intCounter2] + ",");
+    // Iterate through the 2D array and print out rows 0 to i-1 and columns 0 to j-1
+    for (intRowCounter = 0; intRowCounter < i; intRowCounter++) {
+      for (intColCounter = 0; intColCounter < j; intColCounter++) {
+        file.print(intPascalTriangle[intRowCounter][intColCounter] + ",");
       }
       file.println();
     }
 
     // Close file 
     file.close();
-  }
-   
-
-  public static void main(String[] args) throws IOException{
-    pascalTri(9, 9);
   }
 
 }
