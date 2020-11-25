@@ -84,9 +84,31 @@ public class Utility {
 
   }
 
+  public static void diagonal(int n) throws IOException {
+
+    PrintWriter theOut = new PrintWriter(new FileWriter("src/gr11review/part2/diagonalOut.txt"));
+
+    String strLine;
+    strLine = "";
+    for (int intCount = 1; intCount <= n; intCount++) {
+      for (int intCount2 = 0; intCount2 < n - intCount; intCount2++) {
+        strLine += "0, ";
+      }
+      strLine += "1, ";
+      for (int intCount2 = 0; intCount2 < intCount - 1; intCount2++) {
+        strLine += "2, ";
+      }
+      strLine = strLine.substring(0, strLine.length()-1);
+
+      theOut.println(strLine);
+      strLine = "";     
+    }
+    theOut.close();
+  }
 
 
   public static void main(String[] args) throws IOException {
+    
     System.out.println(sumNumbers("1a1a1a1"));
     System.out.println(alphaWord("file"));
     int[] num = {3, 2, 3};
@@ -94,6 +116,8 @@ public class Utility {
     System.out.println(num[0] + " " + num[1] + " " + num[2]);
     int[] num2 = {2, 1, 1, 2, 1};
     System.out.println(canBalance(num2));
+    diagonal(7);
+
   }
 
 
