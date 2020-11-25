@@ -126,7 +126,7 @@ public class Utility {
 
   // SAM
   // Function that prints the pascal triangle up to the given row i and column j
-  public static void pascalTri(int i, int j) {
+  public static void pascalTri(int i, int j) throws IOException {
     // Initialize print writer
     PrintWriter file = new PrintWriter(new FileWriter("src/gr11review/part2/pascalOut.txt"));
 
@@ -137,32 +137,32 @@ public class Utility {
 
     // Set the first rows and columns equal to 0
     for (intCounter = 0; intCounter < i; intCounter++) {
-      intPascalTriangle[intCounter][0] = 0;
+      intPascalTriangle[intCounter][0] = 1;
     }
     for (intCounter2 = 0; intCounter2 < j; intCounter2++) {
-      intPascalTriangle[0][intCounter2] = 0;
+      intPascalTriangle[0][intCounter2] = 1;
     }
 
     // Iterate the row from 1 to i-1. For each of these rows, iterate the column from 1 to j-1. The pascal traingle value of this cell is the sum of the pascal triangle values to its left and above
     for (intCounter = 1; intCounter < i; intCounter++) {
       for (intCounter2 = 1; intCounter2 < j; intCounter2++) {
-        intPascalTriangle[intCounter][intCounter2] = intPascalTriangle[intCounter-1][intCounter2] + intPascalTriangle[intCounter][intCounter2-1];
+        intPascalTriangle[intCounter][intCounter2] = intPascalTriangle[intCounter - 1][intCounter2] + intPascalTriangle[intCounter][intCounter2 - 1];
       }
     }
 
     // Iterate through the 2D array and print out rows 1 to i and columns 1 to j
-    for (intCounter = 1; intCounter < i; intCounter++) {
-      for (intCounter2 = 1; intCounter2 < j-intCounter; intCounter2++) {
-        file.print(intPascalTriangle(intCounter, intCounter2) + ",");
+    for (intCounter = 0; intCounter < i; intCounter++) {
+      for (intCounter2 = 0; intCounter2 < j; intCounter2++) {
+        file.print(intPascalTriangle[intCounter][intCounter2] + ",");
       }
       file.println();
     }
-
+    
   }
    
 
   public static void main(String[] args) throws IOException{
-    PascalTri(3, 4);
+    pascalTri(3, 4);
   }
 
 }
