@@ -40,7 +40,7 @@ public class Utility {
   // Function that returns the longest word in a given text file
   public static String longestWord(String strFileName) throws IOException {
     // Create buffered reader tied to FileIO.txt file
-    BufferedReader file = new BufferedReader(new FileReader(strFileName));
+    BufferedReader thefile = new BufferedReader(new FileReader(strFileName));
 
     // Declare variables
     String strLongestWord;
@@ -48,18 +48,18 @@ public class Utility {
 
     // Initialize variables 
     strLongestWord = "";
-    strCurrentWord = file.readLine();
+    strCurrentWord = thefile.readLine();
     
     // While the end of the given file hasn't been reached, read the new string. If the new string is as long or longer than the current longest word, update the longest word variable
     while (strCurrentWord != null) {
       if (strCurrentWord.length() >= strLongestWord.length()) {
         strLongestWord = strCurrentWord;
       }
-      strCurrentWord = file.readLine();
+      strCurrentWord = thefile.readLine();
     }
 
     // Close file
-    file.close();
+    thefile.close();
 
     // Return longest word
     return strLongestWord;
@@ -68,7 +68,7 @@ public class Utility {
 
   // SAM 
   // Function that takes an integer array. For each multiple of 10, every non-multiple of 10 after that is turned into that multiple of 10 until another multiple of 10 is reached
-  public static int[] tenRun(int[] nums) {
+  public static int[] tenRun(int[] intNums) {
     // Declare variables
     int intCurrentMultiple;
 
@@ -76,23 +76,23 @@ public class Utility {
     intCurrentMultiple = -1;
 
     // Iterate through the array. If a multiple of 10 is encountered, update the current multiple. Every non-multiple of 10 after that is changed to that current multiple
-    for (int i = 0; i < nums.length; i++) {
-      if (nums[i] % 10 == 0) {
-        intCurrentMultiple = nums[i];
+    for (int i = 0; i < intNums.length; i++) {
+      if (intNums[i] % 10 == 0) {
+        intCurrentMultiple = intNums[i];
       }
-      else if (nums[i] % 10 != 0 && intCurrentMultiple != -1) {
-        nums[i] = intCurrentMultiple;
+      else if (intNums[i] % 10 != 0 && intCurrentMultiple != -1) {
+        intNums[i] = intCurrentMultiple;
       }
     }
 
     // Return array
-    return nums;
+    return intNums;
   }
 
 
   // SAM
   // Function that takes in two integer arrays sorted in increasing order and checks if all the numbers in the inner array appear in the outer array
-  public static boolean linearIn(int[] outer, int[] inner) {
+  public static boolean linearIn(int[] intOuter, int[] intInner) {
     // Declare variables
     int intOuterCounter;
     int intInnerCounter;
@@ -101,20 +101,20 @@ public class Utility {
     intOuterCounter = 0;
 
     // Iterate through each element of the inner array, looking for a match with the outer array by an incrementing intOuterCounter varaible
-    for (intInnerCounter = 0; intInnerCounter < inner.length; intInnerCounter++) {
-      while (intOuterCounter < outer.length) {
+    for (intInnerCounter = 0; intInnerCounter < intInner.length; intInnerCounter++) {
+      while (intOuterCounter < intOuter.length) {
         // If the outer item is greater than the current inner item, that means that there's no match for the current inner item; return false
-        if (outer[intOuterCounter] > inner[intInnerCounter]) {
+        if (intOuter[intOuterCounter] > intInner[intInnerCounter]) {
           return false;
         }
         // If the outer item is equal to the current inner item, that means a match for the current inner item has been found; break out of the while loop and move to the next inner item
-        else if (inner[intInnerCounter] == outer[intOuterCounter]) {
+        else if (intInner[intInnerCounter] == intOuter[intOuterCounter]) {
           break;
         }
         // Move to the next outer item in search of a match. If the end of the array is reached, return false
         else {
           intOuterCounter++;
-          if (intOuterCounter == outer.length) {
+          if (intOuterCounter == intOuter.length) {
             return false;
           }
         }
@@ -130,7 +130,7 @@ public class Utility {
   // Function that prints the pascal triangle up to the given row i and column j
   public static void pascalTri(int i, int j) throws IOException {
     // Initialize print writer
-    PrintWriter file = new PrintWriter(new FileWriter("src/gr11review/part2/pascalOut.txt"), false);
+    PrintWriter theout = new PrintWriter(new FileWriter("src/gr11review/part2/pascalOut.txt"), false);
 
     // Declare variables
     int intRowCounter;
@@ -155,13 +155,17 @@ public class Utility {
     // Iterate through the 2D array and print out rows 0 to i-1 and columns 0 to j-1
     for (intRowCounter = 0; intRowCounter < i; intRowCounter++) {
       for (intColCounter = 0; intColCounter < j; intColCounter++) {
-        file.print(intPascalTriangle[intRowCounter][intColCounter] + ",");
+        theout.print(intPascalTriangle[intRowCounter][intColCounter] + ",");
       }
-      file.println();
+      theout.println();
     }
 
     // Close file 
-    file.close();
+    theout.close();
+  }
+
+  public static void main(String[] args) throws IOException {
+    System.out.println(longestWord("src/gr11review/part2/FileIO.txt"));
   }
 
 }
