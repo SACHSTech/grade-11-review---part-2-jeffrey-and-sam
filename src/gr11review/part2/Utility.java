@@ -1,6 +1,7 @@
 package gr11review.part2;
 
 import java.io.*;
+import java.util.*;
 
 public class Utility {
 
@@ -60,11 +61,36 @@ public class Utility {
     // Return longest word
     return strLongestWord;
   }
+
+
+  // SAM 
+  // Function that takes an integer array. For each multiple of 10, every non-multiple of 10 after that is turned into that multiple of 10 until another multiple of 10 is reached
+  public static int[] tenRun(int[] nums) {
+    // Declare variables
+    int intCurrentMultiple;
+
+    // Initialize variables
+    intCurrentMultiple = -1;
+
+    // Iterate through the array. If we encounter a multiple of 10, update the current multiple. Every non-multiple of 10 after that is then changed to that current multiple
+    for (int i = 0; i < nums.length; i++) {
+      if (nums[i] % 10 == 0) {
+        intCurrentMultiple = nums[i];
+      }
+      else if (nums[i] % 10 != 0 && intCurrentMultiple != -1) {
+        nums[i] = intCurrentMultiple;
+      }
+    }
+
+    // Return array
+    return nums;
+  }
    
 
   public static void main(String[] args) throws IOException{
-    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-    System.out.println(longestWord("src/gr11review/part2/FileIO.txt"));
+    int arr[] = {7, 6, 10, 11, 14, 20, 0, 5, 9, 70, 8};
+    
+    System.out.println(Arrays.toString(tenRun(arr)));
   }
 
 }
