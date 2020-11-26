@@ -1,15 +1,8 @@
 package gr11review.part2;
 
 import java.io.*;
-import java.util.*;
 
 public class Utility {
-
-  /*
-  javac -d bin src/gr11review/part2/Utility.java
-  java -classpath bin gr11review.part2.Utility
-  */
-
 
   // SAM
   // Function that takes in a string and removes the middle letter of any 3 letter word beginning with z and ending with p
@@ -39,7 +32,7 @@ public class Utility {
   // SAM
   // Function that returns the longest word in a given text file
   public static String longestWord(String strFileName) throws IOException {
-    // Create buffered reader tied to FileIO.txt file
+    // Create buffered reader 
     BufferedReader thefile = new BufferedReader(new FileReader(strFileName));
 
     // Declare variables
@@ -50,7 +43,7 @@ public class Utility {
     strLongestWord = "";
     strCurrentWord = thefile.readLine();
     
-    // While the end of the given file hasn't been reached, read the new string. If the new string is as long or longer than the current longest word, update the longest word variable
+    // While the end of the given file hasn't been reached, read the new string. If the new string is as long as or longer than the current longest word, update the longest word variable
     while (strCurrentWord != null) {
       if (strCurrentWord.length() >= strLongestWord.length()) {
         strLongestWord = strCurrentWord;
@@ -162,10 +155,6 @@ public class Utility {
 
     // Close file 
     theout.close();
-  }
-
-  public static void main(String[] args) throws IOException {
-    System.out.println(longestWord("src/gr11review/part2/FileIO.txt"));
   }
 
 }

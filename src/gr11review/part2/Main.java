@@ -1,16 +1,13 @@
 package gr11review.part2;
 
-import Utility;
+import java.io.*;
+import java.util.*;
+import gr11review.part2.Utility.*;
 
 public class Main {
 
-  /*
-  javac -d bin src/gr11review/part2/Main.java
-  java -classpath bin gr11review.part2.Main
-  */
-
-  public static void main(String[] args) {
-    System.out.println(Utility.zipZap("zopzip"));
+  public static void main(String[] args) throws IOException {
+    Utility.pascalTri(4, 5);
   }
 
 }
