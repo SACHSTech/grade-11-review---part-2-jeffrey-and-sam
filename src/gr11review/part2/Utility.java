@@ -2,11 +2,18 @@ package gr11review.part2;
 
 import java.io.*;
 import java.util.*;
-
+/**
+* Library of grade 11 part 2 review functions
+* @author: J. Lin
+*
+*/
 public class Utility {
 
+  // JEFFREY
+  // Takes in a string and returns the sum of the numbers within the string
   public static int sumNumbers(String str) {
 
+    // variable declaration and initialization
     String strSum;
     int intTotal, intLength;
     char chrCharacter;
@@ -14,23 +21,30 @@ public class Utility {
     intTotal = 0;
     intLength = str.length();
 
+    // Go through each character in the string
     for (int intCount = 0; intCount < intLength; intCount++) {
-  
       chrCharacter = str.charAt(intCount);
+      // If the current character is a digit, add the digit to strSum
       if (Character.isDigit(chrCharacter)) {
         strSum += chrCharacter;
-      } 
+      }
+      // Once the current character is not a string add the numeric value of strSum to intTotal and reset strSum
       else if (!strSum.equals("")) {
         intTotal += Integer.parseInt(strSum);
         strSum = "";
       }
-
     }
-
+    // Checks if there was a number at the end of the string and adds it to the total
+    if (!strSum.equals("")) {
+      intTotal += Integer.parseInt(strSum);
+    } 
+  
     return intTotal;
 
   }
 
+  // JEFFREY
+  // Goes through a text file and returns the line that is first alphabetically
   public static String alphaWord(String filenametxt) throws IOException {
 
     BufferedReader theFile = new BufferedReader(new FileReader("src/gr11review/part2/" + filenametxt + ".txt"));
@@ -95,7 +109,7 @@ public class Utility {
       if (intSum - intPreSum == intPreSum) {
         return true;
       }
-      else if (intSum - intPreSum < intPreSum) {
+      else if (intPreSum > intSum - intPreSum) {
         return false;
       }
 
