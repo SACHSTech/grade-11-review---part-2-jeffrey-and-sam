@@ -1,12 +1,17 @@
 package gr11review.part2;
 
 import java.io.*;
-
+/**
+* A library of grade 11 review functions
+* @author S. Liu
+*
+*/
 public class Utility {
 
   // SAM
   // Function that takes in a string and removes the middle letter of any 3 letter word beginning with z and ending with p
   public static String zipZap(String strInput) {
+
     // Declare variable
     String strOutput;
 
@@ -26,12 +31,14 @@ public class Utility {
 
     // Return output string
     return strOutput;
+
   }
 
 
   // SAM
   // Function that returns the longest word in a given text file
   public static String longestWord(String strFileName) throws IOException {
+
     // Create buffered reader 
     BufferedReader thefile = new BufferedReader(new FileReader(strFileName));
 
@@ -56,12 +63,14 @@ public class Utility {
 
     // Return longest word
     return strLongestWord;
+
   }
 
 
   // SAM 
   // Function that takes an integer array. For each multiple of 10, every non-multiple of 10 after that is turned into that multiple of 10 until another multiple of 10 is reached
   public static int[] tenRun(int[] intNums) {
+
     // Declare variables
     int intCurrentMultiple;
 
@@ -80,12 +89,14 @@ public class Utility {
 
     // Return array
     return intNums;
+
   }
 
 
   // SAM
   // Function that takes in two integer arrays sorted in increasing order and checks if all the numbers in the inner array appear in the outer array
   public static boolean linearIn(int[] intOuter, int[] intInner) {
+
     // Declare variables
     int intOuterCounter;
     int intInnerCounter;
@@ -111,17 +122,19 @@ public class Utility {
             return false;
           }
         }
-      }
+      } 
     }
     
     // If this part of the code is reached, every inner item has a match; return true
     return true;
+
   }
 
 
   // SAM
   // Function that prints the pascal triangle up to the given row i and column j
   public static void pascalTri(int i, int j) throws IOException {
+    
     // Initialize print writer
     PrintWriter theout = new PrintWriter(new FileWriter("src/gr11review/part2/pascalOut.txt"), false);
 
