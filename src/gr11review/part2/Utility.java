@@ -134,7 +134,7 @@ public class Utility {
   // SAM
   // Function that prints the pascal triangle up to the given row i and column j
   public static void pascalTri(int i, int j) throws IOException {
-    
+
     // Initialize print writer
     PrintWriter theout = new PrintWriter(new FileWriter("src/gr11review/part2/pascalOut.txt"), false);
 
@@ -161,7 +161,10 @@ public class Utility {
     // Iterate through the 2D array and print out rows 0 to i-1 and columns 0 to j-1
     for (intRowCounter = 0; intRowCounter < i; intRowCounter++) {
       for (intColCounter = 0; intColCounter < j; intColCounter++) {
-        theout.print(intPascalTriangle[intRowCounter][intColCounter] + ",");
+        theout.print(intPascalTriangle[intRowCounter][intColCounter]);
+        if (intColCounter != j-1) {
+          theout.print(",");
+        }
       }
       theout.println();
     }
