@@ -20,7 +20,7 @@ public class Utility {
 
     // Iterate through the string and check if the letter i is 'z' and the letter i+2 is 'p'. If so, add 'zp' to the output and increment i by 2 to skip to the letter after 'p'. If not, add character i to the output
     for (int i = 0; i < strInput.length(); i++) {
-      if (i+2 < strInput.length() && strInput.charAt(i) == 'z' && strInput.charAt(i+2) == 'p') {
+      if (i + 2 < strInput.length() && strInput.charAt(i) == 'z' && strInput.charAt(i + 2) == 'p') {
         strOutput += "zp";
         i += 2;
       }
@@ -162,7 +162,7 @@ public class Utility {
     for (intRowCounter = 0; intRowCounter < i; intRowCounter++) {
       for (intColCounter = 0; intColCounter < j; intColCounter++) {
         theout.print(intPascalTriangle[intRowCounter][intColCounter]);
-        if (intColCounter != j-1) {
+        if (intColCounter != j - 1) {
           theout.print(",");
         }
       }
