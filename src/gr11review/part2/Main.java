@@ -17,7 +17,7 @@ public static void main(String[] args) throws IOException {
     System.out.println(Arrays.toString(num));
     int[] num2 = {2, 1, 1, 1, 2, 1};
     System.out.println(Utility.canBalance(num2));
-    Utility.diagonal(7);
+    Utility.diagonal(8);
 
   }
 

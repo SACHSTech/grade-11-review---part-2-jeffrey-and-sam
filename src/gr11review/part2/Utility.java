@@ -13,7 +13,7 @@ public class Utility {
   // Takes in a string and returns the sum of the numbers within the string
   public static int sumNumbers(String str) {
 
-    // variable declaration and initialization
+    // Variable declaration and initialization
     String strSum;
     int intTotal, intLength;
     char chrCharacter;
@@ -38,7 +38,7 @@ public class Utility {
     if (!strSum.equals("")) {
       intTotal += Integer.parseInt(strSum);
     } 
-  
+    // Returns the total
     return intTotal;
 
   }
@@ -46,35 +46,44 @@ public class Utility {
   // JEFFREY
   // Goes through a text file and returns the line that is first alphabetically
   public static String alphaWord(String filenametxt) throws IOException {
-
+    // Create bufferedreader to read file.
     BufferedReader theFile = new BufferedReader(new FileReader("src/gr11review/part2/" + filenametxt + ".txt"));
 
+    // Variable initialization and declaration
     String strLine;
     String strAlpha;
     strAlpha = theFile.readLine();
     strLine = "";
-
+    
+    // Go through each line of the file
     while (strLine != null) {
 
+      // Compare the next line with the current alphabetically highest string and replace it if the next line is alphabetically first
       strLine = theFile.readLine();
       if (strLine != null && strAlpha.compareTo(strLine) > 0) {
         strAlpha = strLine;
       }
 
     }
-
+    
+    // Close the file and return the string
     theFile.close();
     return strAlpha;
 
   }
 
+  // JEFFREY
+  // Returns an array where all instances of the selected value in the array are turned into its numerically highest neighbor
   public static int[] notAlone(int[] nums, int value) {
 
+    // Variable initialization and declaration
     int intLength;
     intLength = nums.length;
 
+    // Iterates through the array
     for (int intCount = 1; intCount < intLength-1; intCount++) {
-
+      
+      // If the current number equals value and doesn't equal the numbers before and after it, set the current number equal to the max of the two numbers adjacent to it
       if (nums[intCount] == value) {
         if (nums[intCount-1] != nums[intCount] && nums[intCount+1] != nums[intCount]) {
           nums[intCount] = Math.max(nums[intCount-1], nums[intCount+1]);
@@ -82,13 +91,17 @@ public class Utility {
       }
 
     }
-
+    
+    // Return array
     return nums;
 
   }
-
+  
+  // JEFFREY
+  // Returns whether or not an array can be split into equal sums
   public static boolean canBalance(int[] nums){
 
+    // Variable declaration and initialization
     int intLength;
     int intSum;
     int intPreSum;
@@ -96,52 +109,78 @@ public class Utility {
     intSum = 0;
     intPreSum = 0;
 
-
+    // Obtain the sum of all numbers in the array 
     for (int intCount = 0; intCount < intLength; intCount++) {
 
       intSum += nums[intCount];
 
     }
 
+    // Iterate through the array, keeping track of the sum of all numbers up to the current index
     for (int intCount = 0; intCount < intLength; intCount++) {
-
+      
       intPreSum += nums[intCount];
+      // Return true if the array is "balanced"
       if (intSum - intPreSum == intPreSum) {
         return true;
       }
+      // Return false if the current sum is already greater than the sum of all leftover numbers in the array
       else if (intPreSum > intSum - intPreSum) {
         return false;
       }
 
     }
-
+    
+    // Returns false as backup
     return false;
 
   }
 
+  // JEFFREY
+  // Takes in an integer, n, and prints out a square of length n to a text file, where one half is 0's, seperated by 1's, and the other half is 2's
   public static void diagonal(int n) throws IOException {
-
+    
+    // Initialize printwriter
     PrintWriter theOut = new PrintWriter(new FileWriter("src/gr11review/part2/diagonalOut.txt"));
 
-    String strLine;
-    strLine = "";
+    // Variable initialization and declaration
+    int[][] intGrid = new int[n][n];
 
-    for (int intCount = 1; intCount <= n; intCount++) {
+    // Go through each row of the square
+    for (int intCount = 0; intCount < n; intCount++) {
 
-      for (int intCount2 = 0; intCount2 < n - intCount; intCount2++) {
-        strLine += "0, ";
+      // Go through each coloumn of the row
+      for (int intCount2 = 0; intCount2 < n; intCount2++) {
+        // Set the value in the array to 0 if the coloumn number is less then the total number of rows minus the current row
+        // Minus an extra 1 because coloumn and row number starts at 0
+        if (intCount2 < n - intCount - 1) {
+          intGrid[intCount][intCount2] = 0;
+        }
+        // Set the value in the array to 1 if the coloumn number is equal to the total number of rows minus the current row
+        else if (intCount2 == n - intCount - 1) {
+          intGrid[intCount][intCount2] = 1;
+        }
+        // Otherwise set value in array to 2
+        else { 
+          intGrid[intCount][intCount2] = 2;
+        }
+
       }
-      strLine += "1, ";
-      for (int intCount2 = 0; intCount2 < intCount - 1; intCount2++) {
-        strLine += "2, ";
-      }
-
-      strLine = strLine.substring(0, strLine.length()-1);
-      theOut.println(strLine);
-      strLine = "";     
 
     }
-
+    // Go through each element in array and print it to the text file
+    for (int intCount = 0; intCount < n; intCount++) {
+      // Print out each element on the same line in the text file
+      for (int intCount2 = 0; intCount2 < n; intCount2++) {
+        theOut.print(intGrid[intCount][intCount2]);
+        if (intCount2 != n-1) {
+            theOut.print(",");
+        }
+      }
+      // Go to next line in text file
+      theOut.println();     
+    }
+    // Close the file
     theOut.close();
 
   }
