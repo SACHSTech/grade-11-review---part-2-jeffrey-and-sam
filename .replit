@@ -1,1 +1,2 @@
 language = "java10"
+run = "javac -d bin src/gr11review/part2/Utility.java; javac -d bin -sourcepath src -cp bin src/gr11review/part2/Main.java; java -cp bin gr11review.part2.Main"
