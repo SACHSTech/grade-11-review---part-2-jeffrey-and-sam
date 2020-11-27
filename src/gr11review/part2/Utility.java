@@ -9,8 +9,13 @@ import java.util.*;
 */
 public class Utility {
 
-  // JEFFREY
-  // Takes in a string and returns the sum of the numbers within the string
+  /**
+  * Takes in a string and returns the sum of the numbers within the string
+  *
+  * @param str The string that is being checked
+  * @return sum of numbers in str
+  * @author J. Lin
+  */
   public static int sumNumbers(String str) {
 
     // Variable declaration and initialization
@@ -43,11 +48,16 @@ public class Utility {
 
   }
 
-  // JEFFREY
-  // Goes through a text file and returns the line that is first alphabetically
+  /**
+  * Goes through a text file and returns the line that is first alphabetically
+  *
+  * @param filenametxt The name of the file we are checking
+  * @return Alphabetically highest string in the file
+  * @author J. Lin
+  */  
   public static String alphaWord(String filenametxt) throws IOException {
     // Create bufferedreader to read file.
-    BufferedReader theFile = new BufferedReader(new FileReader("src/gr11review/part2/" + filenametxt + ".txt"));
+    BufferedReader theFile = new BufferedReader(new FileReader(filenametxt));
 
     // Variable initialization and declaration
     String strLine;
@@ -72,8 +82,14 @@ public class Utility {
 
   }
 
-  // JEFFREY
-  // Returns an array where all instances of the selected value in the array are turned into its numerically highest neighbor
+  /**
+  * Returns an array where all instances of the selected value in the array are turned into its numerically greatest neighbor
+  *
+  * @param nums The array we are checking
+  * @param value The value we are looking for in the array
+  * @return Array where the all instances of the value turn into its numerically greatest neighbor
+  * @author J. Lin
+  */ 
   public static int[] notAlone(int[] nums, int value) {
 
     // Variable initialization and declaration
@@ -97,8 +113,13 @@ public class Utility {
 
   }
   
-  // JEFFREY
-  // Returns whether or not an array can be split into equal sums
+  /**
+  * Returns whether or not an array can be split into equal sums
+  *
+  * @param nums The array we are checking
+  * @return boolean of whether array can be split into equal sums.
+  * @author J. Lin
+  */ 
   public static boolean canBalance(int[] nums){
 
     // Variable declaration and initialization
@@ -136,8 +157,12 @@ public class Utility {
 
   }
 
-  // JEFFREY
-  // Takes in an integer, n, and prints out a square of length n to a text file, where one half is 0's, seperated by 1's, and the other half is 2's
+  /**
+  * Takes in an integer, n, and prints out a square of length n to a text file, where one half is 0's, seperated by 1's, and the other half is 2's
+  *
+  * @param n The length of square we should make
+  * @author J. Lin
+  */ 
   public static void diagonal(int n) throws IOException {
     
     // Initialize printwriter
