@@ -85,8 +85,8 @@ public class Utility {
       
       // If the current number equals value and doesn't equal the numbers before and after it, set the current number equal to the max of the two numbers adjacent to it
       if (nums[intCount] == value) {
-        if (nums[intCount-1] != nums[intCount] && nums[intCount+1] != nums[intCount]) {
-          nums[intCount] = Math.max(nums[intCount-1], nums[intCount+1]);
+        if (nums[intCount - 1] != nums[intCount] && nums[intCount + 1] != nums[intCount]) {
+          nums[intCount] = Math.max(nums[intCount - 1], nums[intCount + 1]);
         }
       }
 
