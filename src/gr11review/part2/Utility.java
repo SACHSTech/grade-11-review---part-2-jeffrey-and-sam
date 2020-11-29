@@ -43,6 +43,7 @@ public class Utility {
     if (!strSum.equals("")) {
       intTotal += Integer.parseInt(strSum);
     } 
+    
     // Returns the total
     return intTotal;
 
@@ -132,9 +133,7 @@ public class Utility {
 
     // Obtain the sum of all numbers in the array 
     for (int intCount = 0; intCount < intLength; intCount++) {
-
       intSum += nums[intCount];
-
     }
 
     // Iterate through the array, keeping track of the sum of all numbers up to the current index
