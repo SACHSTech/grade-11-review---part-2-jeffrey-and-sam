@@ -64,6 +64,13 @@ public class Utility {
     String strLine;
     String strAlpha;
     strAlpha = theFile.readLine();
+    
+    // Return empty string if the file has nothing in it
+    if(strAlpha == null){
+      theFile.close();
+      return "";
+    }
+
     strLine = "";
     
     // Go through each line of the file
@@ -71,7 +78,7 @@ public class Utility {
 
       // Compare the next line with the current alphabetically highest string and replace it if the next line is alphabetically first
       strLine = theFile.readLine();
-      if (strLine != null && strAlpha.compareTo(strLine) > 0) {
+      if (strLine != null && strAlpha.compareToIgnoreCase(strLine) > 0) {
         strAlpha = strLine;
       }
 
